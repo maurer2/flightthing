@@ -1,9 +1,10 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import Head from 'next/head';
+
+import type { NextPage } from 'next';
 // import Image from 'next/image'
 
 const Home: NextPage = () => {
-  const meow = "Meow";
+  const meow = 'Meow';
 
   return (
     <div className="">
@@ -13,19 +14,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        Header {meow}
-      </header>
+      <header>Header {meow}</header>
 
-      <main className="">
-        Main
-      </main>
+      <main className="">Main</main>
 
-      <footer className="">
-        Footer
-      </footer>
+      <footer className="">Footer</footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

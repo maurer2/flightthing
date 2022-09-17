@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import type { ReactElement } from "react";
-import type { PropsDashboard } from "./types";
+import type { ReactElement } from 'react';
+import type { PropsDashboard } from './types';
 
 function Dashboard({ name, children }: PropsDashboard): ReactElement {
   console.log(name);
