@@ -20,7 +20,7 @@ function CoordinateSystem({ name }: PropsCoordinateSystem): ReactElement {
       yAxis.current.geometry.setFromPoints([new Vector3(0, 0, 0), new Vector3(0, 100, 0)]);
     }
     if (zAxis.current) {
-      zAxis.current.geometry.setFromPoints([new Vector3(0, 0, 0), new Vector3(0, 0, 100)]);
+      zAxis.current.geometry.setFromPoints([new Vector3(0, 0, 0), new Vector3(-100, -100, -100)]);
     }
   });
 
