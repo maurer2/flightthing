@@ -1,6 +1,9 @@
 import Head from 'next/head';
 
+import Canvas3D from '../src/components/Canvas3D';
+
 import type { NextPage } from 'next';
+
 // import Image from 'next/image'
 
 // https://stackoverflow.com/questions/71144514/type-error-when-using-function-with-the-return-type-nextpage
@@ -23,7 +26,9 @@ const Home: NextPage = () => {
         <h1 className="font-bold">Header {meow}</h1>
       </header>
 
-      <main className="">Main</main>
+      <main className="">
+        <Canvas3D name="Canvas3D" />
+      </main>
 
       <footer className="">Footer</footer>
     </div>

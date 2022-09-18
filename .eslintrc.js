@@ -55,6 +55,7 @@ module.exports = {
     ],
     '@typescript-eslint/consistent-type-imports': 'error',
     'prettier/prettier': 'error',
+    'import/order': 'off',
   },
   settings: {
     'import/resolver': {
