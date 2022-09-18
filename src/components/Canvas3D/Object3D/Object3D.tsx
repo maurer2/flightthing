@@ -15,8 +15,10 @@ export function Object3D({ posX, posY, velocityX, velocityY }: PropsObject3D): R
     position: [posX, posY, 0],
   });
 
-  useFrame(() => {
-    if (!propsMesh?.current) {
+  useFrame(({ clock }) => {
+    // console.log(clock.getElapsedTime());
+
+    if (!propsMesh || !propsMesh.current || !propsMesh.current.rotation) {
       return;
     }
     propsMesh.current.rotation.x += velocityX;
@@ -24,9 +26,9 @@ export function Object3D({ posX, posY, velocityX, velocityY }: PropsObject3D): R
   });
 
   return (
-    <mesh {...propsMesh} ref={propsMesh}>
+    <mesh {...propsMesh} ref={propsMesh as any}>
       <boxGeometry args={[1, 1]} />
-      <meshStandardMaterial color="gray" />
+      <meshStandardMaterial color="gray" transparent />
     </mesh>
   );
 }
