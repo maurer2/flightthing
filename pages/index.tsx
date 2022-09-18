@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Canvas3D from '../src/components/Canvas3D';
+import Canvas3D from '../src/components/Canvas3D/Canvas3D';
 
 import type { NextPage } from 'next';
 
