@@ -16,9 +16,6 @@ function Canvas3D({ name }: PropsCanvas3D): ReactElement {
     <div className="bg-slate-100 h-full flex">
       <div className="w-3/6 h-3/6 m-auto">
         <Canvas>
-          <ambientLight intensity={0.15} color="white" />
-          {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} color="red" /> */}
-          {/* <pointLight position={[-10, -10, -10]} /> */}
           <directionalLight castShadow position={[2.5, 8, 5]} shadow-mapSize={[1024, 1024]}>
             <orthographicCamera attach="shadow-camera" args={[-10, 10, 10, -10]} />
           </directionalLight>

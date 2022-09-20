@@ -1,15 +1,17 @@
 import Head from 'next/head';
+import { shallowEqual, useSelector } from 'react-redux';
 
 import Canvas3D from '../src/components/Canvas3D/Canvas3D';
 
 import type { NextPage } from 'next';
+import type { Store } from '../src/store/types';
 
 // import Image from 'next/image'
 
 // https://stackoverflow.com/questions/71144514/type-error-when-using-function-with-the-return-type-nextpage
 // eslint-disable-next-line react/function-component-definition
 const Home: NextPage = () => {
-  const meow = 'Meow';
+  const sensor = useSelector((state: Store) => state.sensor, shallowEqual);
 
   return (
     <div
@@ -23,7 +25,10 @@ const Home: NextPage = () => {
       </Head>
 
       <header className="" data-testid="app-header">
-        <h1 className="font-bold">Header {meow}</h1>
+        <h1 className="font-bold">Header</h1>
+        <code>
+          <pre>{JSON.stringify(sensor, null, 4)}</pre>
+        </code>
       </header>
 
       <main className="">
