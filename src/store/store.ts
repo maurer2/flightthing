@@ -8,7 +8,5 @@ export const initialState: Store = {
     value: 0,
     unit: 'unit',
   },
-  test: {
-    name: 'Test',
-  },
+  test: 'Test',
 };

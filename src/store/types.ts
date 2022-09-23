@@ -1,12 +1,12 @@
+import type { TEST, UPDATE_SENSOR } from './actionTypes';
+
 export type Sensor = {
   name: string;
   value: number;
   unit: string;
 };
 
-export type Test = {
-  name: string;
-};
+export type Test = string;
 
 export type Store = {
   sensor: Sensor;
@@ -14,14 +14,13 @@ export type Store = {
 };
 
 export type SensorAction = {
-  type: string;
+  type: typeof UPDATE_SENSOR;
   payload: Sensor;
 };
 
 export type TestAction = {
-  type: string;
+  type: typeof TEST;
   payload: Test;
 };
 
-// todo discriminate union
-export type Actions = SensorAction & TestAction;
+export type Actions = SensorAction | TestAction;
