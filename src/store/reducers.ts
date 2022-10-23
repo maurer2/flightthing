@@ -5,7 +5,8 @@ import { initialState } from './store';
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
 const reducers = (state: NonNullable<Store> = initialState, action: Actions): Store => {
-  switch (action.type) {
+  const { type } = action;
+  switch (type) {
     case UPDATE_SENSOR:
       return {
         ...state,
