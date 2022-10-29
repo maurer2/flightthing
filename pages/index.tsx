@@ -26,7 +26,7 @@ const Home: NextPage = (): ReactElement => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="" data-testid="app-header">
+      <header className="bg-blue-500" data-testid="app-header">
         <h1 className="font-bold">Header</h1>
         <SensorChecker name="Testsensor" />
       </header>
@@ -35,7 +35,7 @@ const Home: NextPage = (): ReactElement => {
         <Canvas3D name="Canvas3D" />
       </main>
 
-      <footer className="">Footer</footer>
+      <footer className="bg-blue-500">Footer</footer>
     </div>
   );
 };
