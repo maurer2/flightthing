@@ -14,15 +14,20 @@ export function Object3D({ posX, posY, velocityX, velocityY }: PropsObject3D): R
     },
     position: [posX, posY, 0],
   });
+  const prefVelocityY = useRef<PropsObject3D['velocityY'] | null>(null);
 
   useFrame(({ clock }) => {
     // console.log(clock.getElapsedTime());
 
-    if (!propsMesh || !propsMesh.current || !propsMesh.current.rotation) {
+    if (!propsMesh || !propsMesh.current || !propsMesh?.current?.rotation) {
       return;
     }
-    propsMesh.current.rotation.x += velocityX;
-    propsMesh.current.rotation.y += velocityY;
+
+    if (velocityY !== prefVelocityY.current) {
+      propsMesh.current.rotation.y = velocityY;
+    }
+
+    prefVelocityY.current = propsMesh.current.rotation.y;
   });
 
   return (

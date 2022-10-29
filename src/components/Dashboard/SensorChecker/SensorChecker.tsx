@@ -13,13 +13,14 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
   const sliderId: string = useId();
 
   const handleSliderChange = (event: FormEvent<HTMLInputElement>): void => {
+    event.preventDefault();
     const { valueAsNumber } = event.currentTarget;
 
     dispatch(
       updateSensor({
         name,
         value: valueAsNumber,
-        unit: 'unit',
+        unit: 'rad',
       }),
     );
   };
@@ -31,8 +32,8 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
       // dummy
       updateSensor({
         name,
-        value: Math.random() * 10,
-        unit: 'unit',
+        value: Math.random() * Math.PI * 2,
+        unit: 'rad',
       }),
     );
   }
@@ -54,9 +55,10 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
           id={sliderId}
           name={sliderId}
           min="0"
-          max="10"
+          max={Math.PI * 2} // 1 rotation
           step={0.01}
           onChange={handleSliderChange}
+          className="w-full"
         />
       </div>
       <code>
