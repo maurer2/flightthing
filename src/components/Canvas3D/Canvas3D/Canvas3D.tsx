@@ -15,9 +15,6 @@ function Canvas3D(): ReactElement {
 
   return (
     <div className="bg-slate-100 h-full">
-      <code>
-        <pre>{JSON.stringify(sensor, null, 4)}</pre>
-      </code>
       <div className="flex h-full">
         <div className="w-3/6 h-3/6 m-auto">
           <Canvas>

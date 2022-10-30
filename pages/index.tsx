@@ -25,9 +25,13 @@ const Home: NextPage = (): ReactElement => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-blue-500" data-testid="app-header">
-        <h1 className="font-bold">Header</h1>
-        <SensorChecker name="Testsensor" />
+      <header className="bg-blue-500 p-4" data-testid="app-header">
+        <h1 className="font-bold mb-4 text-2xl">Header</h1>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="col-span-1">
+            <SensorChecker name="Testsensor" />
+          </div>
+        </div>
       </header>
 
       <main className="">
