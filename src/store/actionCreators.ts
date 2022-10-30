@@ -1,6 +1,6 @@
-import type { Sensor, SensorAction, SensorQueryAction, Test, TestAction } from './types';
+import type { Sensor, SensorAction, SensorQueryAction } from './types';
 
-import { QUERY_SENSOR, TEST, UPDATE_SENSOR } from './actionTypes';
+import { QUERY_SENSOR, UPDATE_SENSOR } from './actionTypes';
 
 export function updateSensor(sensor: Sensor): SensorAction {
   const action: SensorAction = {
@@ -14,15 +14,6 @@ export function updateSensor(sensor: Sensor): SensorAction {
 export function querySensor(): SensorQueryAction {
   const action: SensorQueryAction = {
     type: QUERY_SENSOR,
-  };
-
-  return action;
-}
-
-export function test(sensor: Test): TestAction {
-  const action: TestAction = {
-    type: TEST,
-    payload: sensor,
   };
 
   return action;

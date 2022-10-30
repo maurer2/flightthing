@@ -1,7 +1,12 @@
 import type { Actions, Store } from './types';
 
-import { QUERY_SENSOR, TEST, UPDATE_SENSOR } from './actionTypes';
+import { QUERY_SENSOR, UPDATE_SENSOR } from './actionTypes';
 import { initialState } from './store';
+
+// stackoverflow.com/questions/54408912/how-to-decompose-typescript-discriminated-union-switch-block-and-keep-it-exhau
+function assertNever(value: never): never {
+  throw new Error(`Missing value: ${value}`);
+}
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
 const reducers = (state: NonNullable<Store> = initialState, action: Actions): Store => {
@@ -16,15 +21,15 @@ const reducers = (state: NonNullable<Store> = initialState, action: Actions): St
         ...state,
         sensor: action.payload,
       };
-    case TEST:
+    default: {
+      // assertNever(type);
+
+      console.log('type', type);
+
       return {
         ...state,
-        test: action.payload,
       };
-    default:
-      return {
-        ...state,
-      };
+    }
   }
 };
 

@@ -15,8 +15,6 @@ function getSensorData(): Sensor {
 }
 
 function* getSensorDataSaga() {
-  console.log('getSensorDataSaga');
-
   try {
     const response: Sensor = yield call(getSensorData);
 
