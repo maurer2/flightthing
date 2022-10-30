@@ -1,7 +1,7 @@
 import React, { useId } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { updateSensor } from '../../../store/actionCreators';
+import { querySensor, updateSensor } from '../../../store/actionCreators';
 
 import type { FormEvent, MouseEvent, ReactElement } from 'react';
 import type { Sensor, Store } from '../../../store/types';
@@ -28,14 +28,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
   function handleClick(event: MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
 
-    dispatch(
-      // dummy
-      updateSensor({
-        name,
-        value: Math.random() * Math.PI * 2,
-        unit: 'rad',
-      }),
-    );
+    dispatch(querySensor());
   }
 
   return (

@@ -8,10 +8,9 @@ import Object3D from '../Object3D';
 
 import type { ReactElement } from 'react';
 import type { Sensor, Store } from '../../../store/types';
-import type { PropsCanvas3D } from './types';
+// import type { PropsCanvas3D } from './types';
 
-function Canvas3D({ name }: PropsCanvas3D): ReactElement {
-  console.log(name);
+function Canvas3D(): ReactElement {
   const sensor = useSelector<Store, Sensor>((state: Store) => state.sensor, shallowEqual);
 
   return (

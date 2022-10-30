@@ -4,14 +4,14 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import type { Sensor } from './types';
 
 import { updateSensor } from './actionCreators';
-import { UPDATE_SENSOR } from './actionTypes';
+import { QUERY_SENSOR } from './actionTypes';
 
 function getSensorData(): Sensor {
   return {
-    name: 'Test',
-    value: Math.random(),
-    unit: 'Test',
-  } as Sensor;
+    name: 'Sagas Sensor',
+    value: Math.random() * Math.PI * 2,
+    unit: 'rad',
+  };
 }
 
 function* getSensorDataSaga() {
@@ -20,20 +20,21 @@ function* getSensorDataSaga() {
   try {
     const response: Sensor = yield call(getSensorData);
 
+    // yield put({ type: 'UPDATE_SENSOR', response });
     yield put(updateSensor(response));
   } catch (error) {
     console.log(error);
 
-    // yield put(
-    //   updateSensor({
-    //     name: 'Error',
-    //     value: 0,
-    //     unit: '',
-    //   }),
-    // );
+    yield put(
+      updateSensor({
+        name: 'Error',
+        value: 0,
+        unit: '',
+      }),
+    );
   }
 }
 
 export function* updateSensorSaga() {
-  yield all([takeLatest(UPDATE_SENSOR, getSensorDataSaga)]);
+  yield all([takeLatest(QUERY_SENSOR, getSensorDataSaga)]);
 }
