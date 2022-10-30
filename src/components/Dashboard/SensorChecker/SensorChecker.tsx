@@ -1,7 +1,7 @@
-import React, { useId } from 'react';
+import React, { Fragment, useId } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { updateSensor } from '../../../store/actionCreators';
+import { querySensor, updateSensor } from '../../../store/actionCreators';
 
 import type { FormEvent, MouseEvent, ReactElement } from 'react';
 import type { Sensor, Store } from '../../../store/types';
@@ -28,27 +28,21 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
   function handleClick(event: MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
 
-    dispatch(
-      // dummy
-      updateSensor({
-        name,
-        value: Math.random() * Math.PI * 2,
-        unit: 'rad',
-      }),
-    );
+    dispatch(querySensor());
   }
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <>
+      <h2 className="mb-4 text-xl">{name}</h2>
       <button
         type="button"
         onClick={handleClick}
-        className="bg-white text-blue-500 font-semibold py-2 px-4 border border-black-500 rounded"
+        className="mb-4 py-2 px-4 bg-white hover:bg-gray-200 text-blue-500 font-semibold"
       >
-        Update Sensor {name}
+        Trigger random update
       </button>
       <div>
-        <label htmlFor={sliderId}>Slider</label>
+        <label htmlFor={sliderId}>Set manual value</label>
         <input
           type="range"
           value={sensor.value}
@@ -56,15 +50,26 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
           name={sliderId}
           min="0"
           max={Math.PI * 2} // 1 rotation
-          step={0.01}
+          step={0.0001}
           onChange={handleSliderChange}
           className="w-full"
         />
       </div>
-      <code>
-        <pre>{JSON.stringify(sensor, null, 4)}</pre>
-      </code>
-    </div>
+      <dl className="grid grid-cols-[min-content_minmax(0,_1fr)] gap-x-4 gap-y-1">
+        {Object.entries(sensor).map(
+          ([key, value]): ReactElement => (
+            <Fragment key={key}>
+              <dt>
+                <code>{key}</code>
+              </dt>
+              <dd>
+                <code>{value}</code>
+              </dd>
+            </Fragment>
+          ),
+        )}
+      </dl>
+    </>
   );
 }
 

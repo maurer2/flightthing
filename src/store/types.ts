@@ -1,4 +1,4 @@
-import type { TEST, UPDATE_SENSOR } from './actionTypes';
+import type { QUERY_SENSOR, UPDATE_SENSOR } from './actionTypes';
 
 export type Sensor = {
   name: string;
@@ -6,11 +6,8 @@ export type Sensor = {
   unit: string;
 };
 
-export type Test = string;
-
 export type Store = {
   sensor: Sensor;
-  test: Test;
 };
 
 export type SensorAction = {
@@ -18,9 +15,8 @@ export type SensorAction = {
   payload: Sensor;
 };
 
-export type TestAction = {
-  type: typeof TEST;
-  payload: Test;
+export type SensorQueryAction = {
+  type: typeof QUERY_SENSOR;
 };
 
-export type Actions = SensorAction | TestAction;
+export type Actions = SensorAction | SensorQueryAction;
