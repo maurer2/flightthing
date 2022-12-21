@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 
 import { useFrame } from '@react-three/fiber';
 
-import type { MeshProps } from '@react-three/fiber';
+// import type { MeshProps } from '@react-three/fiber';
 import type { ReactElement } from 'react';
 import type { PropsObject3D } from './types';
 
-export function Object3D({ posX, posY, velocityX, velocityY }: PropsObject3D): ReactElement {
-  const propsMesh = useRef<MeshProps>({
+export function Object3D({ posX, posY, velocityY }: PropsObject3D): ReactElement {
+  const propsMesh = useRef({
     rotation: {
       y: 0,
       x: 0,
@@ -16,7 +16,7 @@ export function Object3D({ posX, posY, velocityX, velocityY }: PropsObject3D): R
   });
   const prefVelocityY = useRef<PropsObject3D['velocityY'] | null>(null);
 
-  useFrame(({ clock }) => {
+  useFrame(() => {
     // console.log(clock.getElapsedTime());
 
     if (!propsMesh || !propsMesh.current || !propsMesh?.current?.rotation) {

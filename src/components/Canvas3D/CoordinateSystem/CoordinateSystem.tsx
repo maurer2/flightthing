@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import THREE, { Vector3 } from 'three';
+import { Vector3 } from 'three';
 
 import { useFrame } from '@react-three/fiber';
 
@@ -8,6 +8,8 @@ import type { Line } from 'three';
 import type { PropsCoordinateSystem } from './types';
 
 function CoordinateSystem({ name }: PropsCoordinateSystem): ReactElement {
+  console.log(name);
+
   const xAxis = useRef<Line>();
   const yAxis = useRef<Line>();
   const zAxis = useRef<Line>();
