@@ -1,11 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 
+import SensorValue from '../types/SensorValue';
+
 import type { Store } from './types';
 
 export const initialState: Store = {
   sensor: {
-    name: 'Testsensor',
-    value: 0,
-    unit: 'unit',
+    name: 'Rotation Y-Axis',
+    value: SensorValue.fromDegrees(0),
   },
 };

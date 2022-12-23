@@ -21,7 +21,7 @@ function Canvas3D(): ReactElement {
             <directionalLight castShadow position={[2.5, 8, 5]} shadow-mapSize={[1024, 1024]}>
               <orthographicCamera attach="shadow-camera" args={[-10, 10, 10, -10]} />
             </directionalLight>
-            <Object3D posX={0} posY={0} velocityX={0} velocityY={sensor.value} />
+            <Object3D posX={0} posY={0} velocityX={0} velocityY={sensor.value.inRadians} />
             <CoordinateSystem name="CoordinateSystem" />
           </Canvas>
         </div>

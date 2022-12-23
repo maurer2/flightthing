@@ -1,15 +1,13 @@
-// import type { Sensor2 } from './types';
-
-export default class Sensor2 {
+export default class SensorValue {
   private readonly valueInRadians: number;
 
-  public static fromDegrees(degrees: number): Sensor2 {
+  public static fromDegrees(degrees: number): SensorValue {
     const rads = (degrees * Math.PI) / 180;
 
     return new this(rads);
   }
 
-  public static fromRadians(radians: number): Sensor2 {
+  public static fromRadians(radians: number): SensorValue {
     return new this(radians);
   }
 

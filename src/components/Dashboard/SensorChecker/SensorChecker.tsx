@@ -3,6 +3,7 @@ import React, { Fragment, useId } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { querySensor, updateSensor } from '../../../store/actionCreators';
+import SensorValue from '../../../types/SensorValue';
 
 import type { FormEvent, MouseEvent, ReactElement } from 'react';
 import type { Sensor, Store } from '../../../store/types';
@@ -20,8 +21,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
     dispatch(
       updateSensor({
         name,
-        value: valueAsNumber,
-        unit: 'rad',
+        value: SensorValue.fromRadians(valueAsNumber),
       }),
     );
   };
@@ -46,7 +46,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
         <label htmlFor={sliderId}>Set manual value</label>
         <input
           type="range"
-          value={sensor.value}
+          value={sensor.value.inRadians}
           id={sliderId}
           name={sliderId}
           min="0"
@@ -64,7 +64,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
                 <code>{key}</code>
               </dt>
               <dd>
-                <code>{value}</code>
+                <code>{typeof value === 'string' ? value : value.inRadians}</code>
               </dd>
             </Fragment>
           ),

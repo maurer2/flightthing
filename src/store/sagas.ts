@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
+import SensorValue from '../types/SensorValue';
+
 import type { Sensor } from './types';
 
 import { updateSensor } from './actionCreators';
@@ -8,9 +10,8 @@ import { QUERY_SENSOR } from './actionTypes';
 
 function getSensorData(): Sensor {
   return {
-    name: 'Sagas Sensor',
-    value: Math.random() * Math.PI * 2,
-    unit: 'rad',
+    name: 'Rotation Y-Axis',
+    value: SensorValue.fromRadians(Math.random() * Math.PI * 2),
   };
 }
 
@@ -26,8 +27,7 @@ function* getSensorDataSaga() {
     yield put(
       updateSensor({
         name: 'Error',
-        value: 0,
-        unit: '',
+        value: SensorValue.fromRadians(0),
       }),
     );
   }
