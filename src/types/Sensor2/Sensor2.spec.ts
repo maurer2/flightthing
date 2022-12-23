@@ -24,5 +24,10 @@ describe('Sensor2', () => {
     expect(Sensor2.fromRadians(Math.PI * 2).inDegrees).toBe(360);
   });
 
-  it.todo('returns values as multiple of PI');
+  it('returns values as multiple of Pi', () => {
+    expect(Sensor2.fromRadians(Math.PI / 2).inMultiplesOfPi).toBe(0.5);
+    expect(Sensor2.fromRadians(Math.PI).inMultiplesOfPi).toBe(1);
+    expect(Sensor2.fromRadians(Math.PI * 1.5).inMultiplesOfPi).toBe(1.5);
+    expect(Sensor2.fromRadians(Math.PI * 2).inMultiplesOfPi).toBe(2);
+  });
 });

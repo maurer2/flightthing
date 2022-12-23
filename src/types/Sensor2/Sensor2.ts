@@ -25,7 +25,7 @@ export default class Sensor2 {
     return this.valueInRadians * (180 / Math.PI);
   }
 
-  // public get inMultiplesOfPi(): number {
-  //   return 0;
-  // }
+  public get inMultiplesOfPi(): number {
+    return this.valueInRadians / Math.PI;
+  }
 }
