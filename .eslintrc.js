@@ -56,6 +56,14 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
     'prettier/prettier': 'error',
     'import/order': 'off',
+    'import/prefer-default-export': 'off',
+    // Redux toolkit with immer.js
+    'no-param-reassign': ['error', {
+      props: true,
+      ignorePropertyModificationsFor: [
+        'state',
+      ]
+    }],
   },
   settings: {
     'import/resolver': {

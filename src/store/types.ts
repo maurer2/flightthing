@@ -6,6 +6,12 @@ export type Sensor = {
   value: SensorValue;
 };
 
+export type SensorNew = {
+  name: string;
+  value: SensorValue;
+  isBusy: boolean;
+};
+
 export type Store = {
   sensor: Sensor;
 };

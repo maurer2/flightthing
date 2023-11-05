@@ -1,15 +1,14 @@
-import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 
-import type { Store as StoreRedux } from 'redux';
-import type { SensorAction, Store } from './types';
+import { configureStore } from '@reduxjs/toolkit';
 
-import reducers from './reducers';
+import sensorsSlice from './sensorsSlice';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const store: StoreRedux<Store, SensorAction> & {
-  dispatch: (action: SensorAction) => SensorAction;
-} = createStore(reducers, applyMiddleware(logger));
+const store = configureStore({
+  reducer: {
+    sensor: sensorsSlice,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
 
 export default store;

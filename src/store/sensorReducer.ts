@@ -10,7 +10,7 @@ function assertNever(value: never): never {
 }
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
-const reducers = (state: NonNullable<Store> = initialState, action: Actions): Store => {
+const sensorReducer = (state: NonNullable<Store> = initialState, action: Actions): Store => {
   const { type } = action;
   switch (type) {
     case QUERY_SENSOR:
@@ -35,4 +35,4 @@ const reducers = (state: NonNullable<Store> = initialState, action: Actions): St
   }
 };
 
-export default reducers;
+export default sensorReducer;
