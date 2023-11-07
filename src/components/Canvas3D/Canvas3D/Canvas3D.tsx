@@ -6,12 +6,16 @@ import { Canvas } from '@react-three/fiber';
 import CoordinateSystem from '../CoordinateSystem';
 import Object3D from '../Object3D';
 
-import type { ReactElement } from 'react';
-import type { Sensor, Store } from '../../../store/types';
 // import type { PropsCanvas3D } from './types';
+import type { ReactElement } from 'react';
+import type { RootState } from '../../../store';
+import type { Sensor } from '../../../store/types';
 
 function Canvas3D(): ReactElement {
-  const sensor = useSelector<Store, Sensor>((state: Store) => state.sensor, shallowEqual);
+  const sensor = useSelector<RootState, Sensor>(
+    (state) => state.sensors.rotationYAxis,
+    shallowEqual,
+  );
 
   return (
     <div className="bg-slate-100 h-full">
@@ -21,7 +25,7 @@ function Canvas3D(): ReactElement {
             <directionalLight castShadow position={[2.5, 8, 5]} shadow-mapSize={[1024, 1024]}>
               <orthographicCamera attach="shadow-camera" args={[-10, 10, 10, -10]} />
             </directionalLight>
-            <Object3D posX={0} posY={0} velocityX={0} velocityY={sensor.value.inRadians} />
+            <Object3D posX={0} posY={0} velocityX={0} velocityY={sensor.value} />
             <CoordinateSystem name="CoordinateSystem" />
           </Canvas>
         </div>

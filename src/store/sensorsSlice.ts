@@ -3,32 +3,28 @@ import { createSlice } from '@reduxjs/toolkit';
 import SensorValue from '../types/SensorValue';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { SensorNew } from './types';
+import type { Sensor } from './types';
 
 const sensorIds = ['rotationYAxis', 'rotationXAxis', 'rotationZAxis'] as const;
-type SensorId = typeof sensorIds[number];
+export type SensorId = typeof sensorIds[number];
 
-type SensorsState = {
-  sensors: Record<SensorId, SensorNew>;
-};
+type SensorsState = Record<SensorId, Sensor>;
 
 const initialState: SensorsState = {
-  sensors: {
-    rotationYAxis: {
-      name: 'Rotation Y-Axis',
-      value: SensorValue.fromDegrees(0),
-      isBusy: false,
-    },
-    rotationXAxis: {
-      name: 'Rotation X-Axis',
-      value: SensorValue.fromDegrees(0),
-      isBusy: false,
-    },
-    rotationZAxis: {
-      name: 'Rotation Z-Axis',
-      value: SensorValue.fromDegrees(0),
-      isBusy: false,
-    },
+  rotationXAxis: {
+    name: 'Rotation X-Axis',
+    value: 0,
+    isBusy: false,
+  },
+  rotationYAxis: {
+    name: 'Rotation Y-Axis',
+    value: 0,
+    isBusy: false,
+  },
+  rotationZAxis: {
+    name: 'Rotation Z-Axis',
+    value: 0,
+    isBusy: false,
   },
 };
 
@@ -36,20 +32,20 @@ const sensorsSlice = createSlice({
   name: 'sensors',
   initialState,
   reducers: {
-    sensorQueried(state, action: PayloadAction<{ id: SensorId }>) {
+    querySensor(state, action: PayloadAction<{ id: SensorId }>) {
       const { id } = action.payload;
 
-      state.sensors[id].isBusy = true;
+      state[id].isBusy = true;
     },
-    sensorUpdated(state, action: PayloadAction<{ id: SensorId; value: SensorValue }>) {
+    updateSensor(state, action: PayloadAction<{ id: SensorId; value: number }>) {
       const { id, value } = action.payload;
 
-      state.sensors[id].value = value;
-      state.sensors[id].isBusy = false;
+      state[id].value = value;
+      state[id].isBusy = false;
     },
   },
 });
 
-export const { sensorQueried, sensorUpdated } = sensorsSlice.actions;
+export const { querySensor, updateSensor } = sensorsSlice.actions;
 
 export default sensorsSlice.reducer;
