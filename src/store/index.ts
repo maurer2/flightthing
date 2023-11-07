@@ -1,21 +1,21 @@
-import { applyMiddleware, createStore } from 'redux';
+import { useDispatch } from 'react-redux';
 import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
 
-import type { Store as StoreRedux } from 'redux';
-import type { SensorAction, Store } from './types';
+import { configureStore } from '@reduxjs/toolkit';
 
-import reducers from './reducers';
-import { rootSaga } from './rootSaga';
+import sensorsSlice from './sensorsSlice';
 
-const sagaMiddleware = createSagaMiddleware();
+const store = configureStore({
+  reducer: {
+    sensors: sensorsSlice,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  // middleware: [logger] as const,
+});
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const store: StoreRedux<Store, SensorAction> & {
-  dispatch: (action: SensorAction) => SensorAction;
-} = createStore(reducers, applyMiddleware(sagaMiddleware, logger));
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-sagaMiddleware.run(rootSaga);
+export const useAppDispatch: () => typeof store.dispatch = useDispatch;
 
 export default store;

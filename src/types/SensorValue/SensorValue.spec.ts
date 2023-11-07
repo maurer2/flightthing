@@ -28,7 +28,7 @@ describe('SensorValue', () => {
     expect(SensorValue.fromRadians(Math.PI * 2).inDegrees).toBe(360);
   });
 
-  it('returns values as multiple of Pi', () => {
+  it('returns values as multiples of Pi', () => {
     expect(SensorValue.fromRadians(Math.PI / 2).inMultiplesOfPi).toBe(0.5);
     expect(SensorValue.fromRadians(Math.PI).inMultiplesOfPi).toBe(1);
     expect(SensorValue.fromRadians(Math.PI * 1.5).inMultiplesOfPi).toBe(1.5);

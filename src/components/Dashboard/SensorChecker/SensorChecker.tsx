@@ -1,18 +1,29 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Fragment, useId } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 
-import { querySensor, updateSensor } from '../../../store/actionCreators';
+import { useAppDispatch } from '../../../store';
+import { updateSensor } from '../../../store/sensorsSlice';
 import SensorValue from '../../../types/SensorValue';
 
 import type { FormEvent, MouseEvent, ReactElement } from 'react';
-import type { Sensor, Store } from '../../../store/types';
+import type { RootState } from '../../../store';
+import type { Sensor } from '../../../store/types';
 import type { PropsSensorChecker } from './types';
 
+const numberFormatter = new Intl.NumberFormat('en-GB', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 function SensorChecker({ name }: PropsSensorChecker): ReactElement {
-  const dispatch = useDispatch();
-  const sensor = useSelector<Store, Sensor>((state: Store) => state.sensor, shallowEqual);
+  const dispatch = useAppDispatch();
+  const sensor = useSelector<RootState, Sensor>(
+    (state) => state.sensors.rotationYAxis,
+    shallowEqual,
+  );
   const sliderId: string = useId();
+  const valueObject = SensorValue.fromRadians(sensor.value);
 
   const handleSliderChange = (event: FormEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -20,8 +31,8 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
 
     dispatch(
       updateSensor({
-        name,
-        value: SensorValue.fromRadians(valueAsNumber),
+        id: 'rotationYAxis',
+        value: valueAsNumber,
       }),
     );
   };
@@ -29,12 +40,19 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
   function handleClick(event: MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
 
-    dispatch(querySensor());
+    dispatch(
+      updateSensor({
+        id: 'rotationYAxis',
+        value: Math.random() * Math.PI * 2,
+      }),
+    );
   }
 
   return (
     <>
-      <h2 className="mb-4 text-xl">{name}</h2>
+      <h2 className="mb-4 text-xl">
+        {name}: {sensor.name}
+      </h2>
       <button
         type="button"
         onClick={handleClick}
@@ -42,11 +60,17 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
       >
         Trigger random update
       </button>
+      <dl className="grid grid-cols-[max-content_minmax(0,_1fr)] gap-x-4 gap-y-1">
+        <dt>Value in degrees:</dt>
+        <dd>{numberFormatter.format(valueObject.inDegrees)}</dd>
+        <dt>Value in multiples of &Pi;:</dt>
+        <dd>{numberFormatter.format(valueObject.inMultiplesOfPi)}</dd>
+      </dl>
       <div>
         <label htmlFor={sliderId}>Set manual value</label>
         <input
           type="range"
-          value={sensor.value.inRadians}
+          value={sensor.value}
           id={sliderId}
           name={sliderId}
           min="0"
@@ -56,20 +80,6 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
           className="w-full"
         />
       </div>
-      <dl className="grid grid-cols-[min-content_minmax(0,_1fr)] gap-x-4 gap-y-1">
-        {Object.entries(sensor).map(
-          ([key, value]): ReactElement => (
-            <Fragment key={key}>
-              <dt>
-                <code>{key}</code>
-              </dt>
-              <dd>
-                <code>{typeof value === 'string' ? value : value.inRadians}</code>
-              </dd>
-            </Fragment>
-          ),
-        )}
-      </dl>
     </>
   );
 }
