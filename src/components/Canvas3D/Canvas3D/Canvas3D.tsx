@@ -12,8 +12,12 @@ import type { RootState } from '../../../store';
 import type { Sensor } from '../../../store/types';
 
 function Canvas3D(): ReactElement {
-  const sensor = useSelector<RootState, Sensor>(
+  const sensorRotationYAxis = useSelector<RootState, Sensor>(
     (state) => state.sensors.rotationYAxis,
+    shallowEqual,
+  );
+  const sensorRotationXAxis = useSelector<RootState, Sensor>(
+    (state) => state.sensors.rotationXAxis,
     shallowEqual,
   );
 
@@ -25,7 +29,12 @@ function Canvas3D(): ReactElement {
             <directionalLight castShadow position={[2.5, 8, 5]} shadow-mapSize={[1024, 1024]}>
               <orthographicCamera attach="shadow-camera" args={[-10, 10, 10, -10]} />
             </directionalLight>
-            <Object3D posX={0} posY={0} velocityX={0} velocityY={sensor.value} />
+            <Object3D
+              posX={0}
+              posY={0}
+              velocityX={sensorRotationXAxis.value}
+              velocityY={sensorRotationYAxis.value}
+            />
             <CoordinateSystem name="CoordinateSystem" />
           </Canvas>
         </div>

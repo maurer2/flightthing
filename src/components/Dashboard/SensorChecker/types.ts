@@ -1,7 +1,8 @@
+import type { SensorId } from '../../../store/sensorsSlice';
 import type { Sensor } from '../../../store/types';
 
 export type PropsSensorChecker = {
-  name: string;
+  id: SensorId;
 };
 
 export type SensorKeys = {

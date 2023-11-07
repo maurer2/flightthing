@@ -16,12 +16,9 @@ const numberFormatter = new Intl.NumberFormat('en-GB', {
   maximumFractionDigits: 2,
 });
 
-function SensorChecker({ name }: PropsSensorChecker): ReactElement {
+function SensorChecker({ id }: PropsSensorChecker): ReactElement {
   const dispatch = useAppDispatch();
-  const sensor = useSelector<RootState, Sensor>(
-    (state) => state.sensors.rotationYAxis,
-    shallowEqual,
-  );
+  const sensor = useSelector<RootState, Sensor>((state) => state.sensors[id], shallowEqual);
   const sliderId: string = useId();
   const valueObject = SensorValue.fromRadians(sensor.value);
 
@@ -31,7 +28,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
 
     dispatch(
       updateSensor({
-        id: 'rotationYAxis',
+        id,
         value: valueAsNumber,
       }),
     );
@@ -42,7 +39,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
 
     dispatch(
       updateSensor({
-        id: 'rotationYAxis',
+        id,
         value: Math.random() * Math.PI * 2,
       }),
     );
@@ -51,7 +48,7 @@ function SensorChecker({ name }: PropsSensorChecker): ReactElement {
   return (
     <>
       <h2 className="mb-4 text-xl">
-        {name}: {sensor.name}
+        {sensor.name} ({id})
       </h2>
       <button
         type="button"

@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import SensorValue from '../types/SensorValue';
-
+// import SensorValue from '../types/SensorValue';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Sensor } from './types';
 
-const sensorIds = ['rotationYAxis', 'rotationXAxis', 'rotationZAxis'] as const;
+export const sensorIds = ['rotationYAxis', 'rotationXAxis', 'rotationZAxis'] as const;
 export type SensorId = typeof sensorIds[number];
 
 type SensorsState = Record<SensorId, Sensor>;

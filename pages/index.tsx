@@ -26,10 +26,16 @@ const Home: NextPage = (): ReactElement => {
       </Head>
 
       <header className="bg-blue-500 p-4" data-testid="app-header">
-        <h1 className="font-bold mb-4 text-2xl">Header</h1>
+        <h1 className="font-bold mb-4 text-2xl">Debug</h1>
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">
-            <SensorChecker name="Testsensor" />
+            <SensorChecker id="rotationYAxis" />
+          </div>
+          <div className="col-span-1">
+            <SensorChecker id="rotationXAxis" />
+          </div>
+          <div className="col-span-1">
+            <SensorChecker id="rotationZAxis" />
           </div>
         </div>
       </header>
