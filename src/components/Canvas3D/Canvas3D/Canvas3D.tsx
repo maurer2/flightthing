@@ -6,7 +6,6 @@ import { Canvas } from '@react-three/fiber';
 import CoordinateSystem from '../CoordinateSystem';
 import Object3D from '../Object3D';
 
-// import type { PropsCanvas3D } from './types';
 import type { ReactElement } from 'react';
 import type { RootState } from '../../../store';
 import type { Sensor } from '../../../store/types';
@@ -18,6 +17,10 @@ function Canvas3D(): ReactElement {
   );
   const sensorRotationXAxis = useSelector<RootState, Sensor>(
     (state) => state.sensors.rotationXAxis,
+    shallowEqual,
+  );
+  const sensorRotationZAxis = useSelector<RootState, Sensor>(
+    (state) => state.sensors.rotationZAxis,
     shallowEqual,
   );
 
@@ -32,8 +35,10 @@ function Canvas3D(): ReactElement {
             <Object3D
               posX={0}
               posY={0}
+              posZ={0}
               velocityX={sensorRotationXAxis.value}
               velocityY={sensorRotationYAxis.value}
+              velocityZ={sensorRotationZAxis.value}
             />
             <CoordinateSystem name="CoordinateSystem" />
           </Canvas>
