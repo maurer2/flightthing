@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { Fragment, useId } from 'react';
+import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../store';
@@ -19,7 +19,6 @@ const numberFormatter = new Intl.NumberFormat('en-GB', {
 function SensorChecker({ id }: PropsSensorChecker): ReactElement {
   const dispatch = useAppDispatch();
   const sensor = useSelector<RootState, Sensor>((state) => state.sensors[id], shallowEqual);
-  const sliderId: string = useId();
   const valueObject = SensorValue.fromRadians(sensor.value);
 
   const handleSliderChange = (event: FormEvent<HTMLInputElement>): void => {
@@ -64,12 +63,12 @@ function SensorChecker({ id }: PropsSensorChecker): ReactElement {
         <dd>{numberFormatter.format(valueObject.inMultiplesOfPi)}</dd>
       </dl>
       <div>
-        <label htmlFor={sliderId}>Set manual value</label>
+        <label htmlFor={id}>Set value manually</label>
         <input
           type="range"
           value={sensor.value}
-          id={sliderId}
-          name={sliderId}
+          id={id}
+          name={id}
           min="0"
           max={Math.PI * 2} // 1 rotation
           step={0.0001}
