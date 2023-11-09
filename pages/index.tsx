@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import Canvas3D from '../src/components/Canvas3D/Canvas3D';
 import SensorChecker from '../src/components/Dashboard/SensorChecker';
+import Gyroscope from '../src/components/Sensors/Gyroscope/Gyroscope';
 
 import type { NextPage } from 'next';
 import type { ReactElement } from 'react';
@@ -43,6 +44,8 @@ const Home: NextPage = (): ReactElement => {
       <main className="">
         <Canvas3D />
       </main>
+
+      <Gyroscope />
 
       <footer className="bg-blue-500">Footer</footer>
     </div>
