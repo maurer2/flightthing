@@ -5,7 +5,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Sensor } from './types';
 
 export const sensorIds = ['rotationYAxis', 'rotationXAxis', 'rotationZAxis'] as const;
-export type SensorId = typeof sensorIds[number];
+export type SensorId = (typeof sensorIds)[number];
 
 type SensorsState = Record<SensorId, Sensor>;
 

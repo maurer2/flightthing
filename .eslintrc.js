@@ -64,6 +64,7 @@ module.exports = {
         'state',
       ]
     }],
+    'no-console': 'off'
   },
   settings: {
     'import/resolver': {

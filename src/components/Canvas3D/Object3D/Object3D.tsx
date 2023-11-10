@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef } from 'react';
 import { Euler, Vector3 } from 'three';
 
@@ -47,8 +48,8 @@ export function Object3D({
 
   return (
     <mesh {...propsMesh} ref={propsMesh as any}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#3b82f6" />
+      <boxGeometry args={[2, 1, 1]} />
+      <meshStandardMaterial />
     </mesh>
   );
 }
