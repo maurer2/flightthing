@@ -20,30 +20,33 @@ export function Object3D({
     position: new Vector3(posX, posY, posZ),
     rotation: new Euler(0, 0, 0),
   });
-  const prefVelocityX = useRef<PropsObject3D['velocityX'] | null>(null);
-  const prefVelocityY = useRef<PropsObject3D['velocityY'] | null>(null);
-  const prefVelocityZ = useRef<PropsObject3D['velocityZ'] | null>(null);
+  const prevVelocity = useRef<Vector3>(new Vector3(0, 0, 0));
+
+  console.log(posX);
 
   useFrame(() => {
-    if (!propsMesh || !propsMesh.current || !propsMesh?.current?.rotation) {
+    if (!propsMesh?.current?.rotation) {
       return;
     }
 
-    if (velocityX !== prefVelocityX.current) {
+    if (velocityX !== prevVelocity.current?.x) {
       propsMesh.current.rotation.x = velocityX;
     }
 
-    if (velocityY !== prefVelocityY.current) {
+    if (velocityY !== prevVelocity.current?.y) {
       propsMesh.current.rotation.y = velocityY;
     }
 
-    if (velocityZ !== prefVelocityZ.current) {
+    if (velocityZ !== prevVelocity.current?.z) {
       propsMesh.current.rotation.z = velocityZ;
     }
 
-    prefVelocityY.current = propsMesh.current.rotation.y;
-    prefVelocityX.current = propsMesh.current.rotation.x;
-    prefVelocityZ.current = propsMesh.current.rotation.z;
+    // store current values for next frame
+    prevVelocity.current?.set(
+      propsMesh.current.rotation.x,
+      propsMesh.current.rotation.y,
+      propsMesh.current.rotation.z,
+    );
   });
 
   return (
