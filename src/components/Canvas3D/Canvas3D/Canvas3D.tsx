@@ -36,9 +36,9 @@ function Canvas3D(): ReactElement {
               posX={0}
               posY={0}
               posZ={0}
-              velocityX={sensorRotationXAxis.value}
-              velocityY={sensorRotationYAxis.value}
-              velocityZ={sensorRotationZAxis.value}
+              rotationX={sensorRotationXAxis.value}
+              rotationY={sensorRotationYAxis.value}
+              rotationZ={sensorRotationZAxis.value}
             />
             <CoordinateSystem name="CoordinateSystem" />
           </Canvas>

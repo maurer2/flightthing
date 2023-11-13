@@ -12,41 +12,35 @@ export function Object3D({
   posX,
   posY,
   posZ,
-  velocityX,
-  velocityY,
-  velocityZ,
+  rotationX,
+  rotationY,
+  rotationZ,
 }: PropsObject3D): ReactElement {
   const propsMesh = useRef<Partial<THREE.Mesh>>({
     position: new Vector3(posX, posY, posZ),
     rotation: new Euler(0, 0, 0),
   });
-  const prevVelocity = useRef<Vector3>(new Vector3(0, 0, 0));
-
-  console.log(posX);
+  const prevRotation = useRef<Vector3>(new Vector3(0, 0, 0));
 
   useFrame(() => {
     if (!propsMesh?.current?.rotation) {
       return;
     }
 
-    if (velocityX !== prevVelocity.current?.x) {
-      propsMesh.current.rotation.x = velocityX;
+    if (rotationX !== prevRotation.current?.x) {
+      propsMesh.current.rotation.x = rotationX;
     }
 
-    if (velocityY !== prevVelocity.current?.y) {
-      propsMesh.current.rotation.y = velocityY;
+    if (rotationY !== prevRotation.current?.y) {
+      propsMesh.current.rotation.y = rotationY;
     }
 
-    if (velocityZ !== prevVelocity.current?.z) {
-      propsMesh.current.rotation.z = velocityZ;
+    if (rotationZ !== prevRotation.current?.z) {
+      propsMesh.current.rotation.z = rotationZ;
     }
 
     // store current values for next frame
-    prevVelocity.current?.set(
-      propsMesh.current.rotation.x,
-      propsMesh.current.rotation.y,
-      propsMesh.current.rotation.z,
-    );
+    prevRotation.current.setFromEuler(propsMesh.current.rotation);
   });
 
   return (
