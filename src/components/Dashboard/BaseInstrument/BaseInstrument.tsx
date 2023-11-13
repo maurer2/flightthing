@@ -1,6 +1,7 @@
+import type { ReactElement } from 'react';
+
 import React from 'react';
 
-import type { ReactElement } from 'react';
 import type { PropsBaseInstrument } from './types';
 
 function BaseInstrument({ name }: PropsBaseInstrument): ReactElement {

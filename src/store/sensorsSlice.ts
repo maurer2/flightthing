@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-
 // import SensorValue from '../types/SensorValue';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
+import { createSlice } from '@reduxjs/toolkit';
+
 import type { Sensor } from './types';
 
 export const sensorIds = ['rotationYAxis', 'rotationXAxis', 'rotationZAxis'] as const;
@@ -11,25 +12,25 @@ type SensorsState = Record<SensorId, Sensor>;
 
 const initialState: SensorsState = {
   rotationXAxis: {
+    isBusy: false,
     name: 'Rotation X-Axis',
     value: 0,
-    isBusy: false,
   },
   rotationYAxis: {
+    isBusy: false,
     name: 'Rotation Y-Axis',
     value: 0,
-    isBusy: false,
   },
   rotationZAxis: {
+    isBusy: false,
     name: 'Rotation Z-Axis',
     value: 0,
-    isBusy: false,
   },
 };
 
 const sensorsSlice = createSlice({
-  name: 'sensors',
   initialState,
+  name: 'sensors',
   reducers: {
     querySensor(state, action: PayloadAction<{ id: SensorId }>) {
       const { id } = action.payload;

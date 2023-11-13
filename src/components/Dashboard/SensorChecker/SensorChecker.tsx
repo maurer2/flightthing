@@ -1,19 +1,20 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import type { FormEvent, MouseEvent, ReactElement } from 'react';
+
 import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
+
+import type { RootState } from '../../../store';
+import type { Sensor } from '../../../store/types';
+import type { PropsSensorChecker } from './types';
 
 import { useAppDispatch } from '../../../store';
 import { updateSensor } from '../../../store/sensorsSlice';
 import SensorValue from '../../../types/SensorValue';
 
-import type { FormEvent, MouseEvent, ReactElement } from 'react';
-import type { RootState } from '../../../store';
-import type { Sensor } from '../../../store/types';
-import type { PropsSensorChecker } from './types';
-
 const numberFormatter = new Intl.NumberFormat('en-GB', {
-  minimumFractionDigits: 2,
   maximumFractionDigits: 2,
+  minimumFractionDigits: 2,
 });
 
 function SensorChecker({ id }: PropsSensorChecker): ReactElement {
@@ -50,9 +51,9 @@ function SensorChecker({ id }: PropsSensorChecker): ReactElement {
         {sensor.name} ({id})
       </h2>
       <button
-        type="button"
-        onClick={handleClick}
         className="mb-4 py-2 px-4 bg-white hover:bg-gray-200 text-blue-500 font-semibold"
+        onClick={handleClick}
+        type="button"
       >
         Trigger random update
       </button>
@@ -65,15 +66,15 @@ function SensorChecker({ id }: PropsSensorChecker): ReactElement {
       <div>
         <label htmlFor={id}>Set value manually</label>
         <input
+          className="w-full"
+          id={id}
+          max={Math.PI * 2} // 1 rotation
+          min="0"
+          name={id}
+          onChange={handleSliderChange}
+          step={0.0001}
           type="range"
           value={sensor.value}
-          id={id}
-          name={id}
-          min="0"
-          max={Math.PI * 2} // 1 rotation
-          step={0.0001}
-          onChange={handleSliderChange}
-          className="w-full"
         />
       </div>
     </>

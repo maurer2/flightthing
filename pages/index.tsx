@@ -1,11 +1,11 @@
+// import Gyroscope from '../src/components/Sensors/Gyroscope/Gyroscope';
+import type { NextPage } from 'next';
+import type { ReactElement } from 'react';
+
 import Head from 'next/head';
 
 import Canvas3D from '../src/components/Canvas3D/Canvas3D';
 import SensorChecker from '../src/components/Dashboard/SensorChecker';
-// import Gyroscope from '../src/components/Sensors/Gyroscope/Gyroscope';
-
-import type { NextPage } from 'next';
-import type { ReactElement } from 'react';
 
 // import Image from 'next/image'
 
@@ -22,8 +22,8 @@ const Home: NextPage = (): ReactElement => {
     >
       <Head>
         <title>Flightthting</title>
-        <meta name="description" content="Flightthting" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta content="Flightthting" name="description" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <header className="bg-blue-500 p-4" data-testid="app-header">

@@ -1,15 +1,14 @@
+import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import logger from 'redux-logger';
-
-import { configureStore } from '@reduxjs/toolkit';
 
 import sensorsSlice from './sensorsSlice';
 
 const store = configureStore({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     sensors: sensorsSlice,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   // middleware: [logger] as const,
 });
 

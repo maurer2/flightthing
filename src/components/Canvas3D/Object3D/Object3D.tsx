@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ReactElement } from 'react';
+import type * as THREE from 'three';
+
+import { useFrame } from '@react-three/fiber';
 import React, { useRef } from 'react';
 import { Euler, Vector3 } from 'three';
 
-import { useFrame } from '@react-three/fiber';
-
-import type { ReactElement } from 'react';
-import type * as THREE from 'three';
 import type { PropsObject3D } from './types';
 
 export function Object3D({
@@ -17,8 +17,8 @@ export function Object3D({
   velocityZ,
 }: PropsObject3D): ReactElement {
   const propsMesh = useRef<Partial<THREE.Mesh>>({
-    rotation: new Euler(0, 0, 0),
     position: new Vector3(posX, posY, posZ),
+    rotation: new Euler(0, 0, 0),
   });
   const prefVelocityX = useRef<PropsObject3D['velocityX'] | null>(null);
   const prefVelocityY = useRef<PropsObject3D['velocityY'] | null>(null);

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
-
 import type { ReactElement } from 'react';
+
+import React, { useEffect } from 'react';
 
 // type GyroscopeProps = Record<string, never>;
 

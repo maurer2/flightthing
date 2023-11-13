@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ReactElement } from 'react';
+import type { Line } from 'three';
+
+import { useFrame } from '@react-three/fiber';
 import React, { useRef } from 'react';
 import { Vector3 } from 'three';
 
-import { useFrame } from '@react-three/fiber';
-
-import type { ReactElement } from 'react';
-import type { Line } from 'three';
 import type { PropsCoordinateSystem } from './types';
 
 function CoordinateSystem({ name }: PropsCoordinateSystem): ReactElement {

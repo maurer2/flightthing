@@ -1,9 +1,10 @@
+import type { ReactElement } from 'react';
+
 import React from 'react';
 
-import type { ReactElement } from 'react';
 import type { PropsDashboard } from './types';
 
-function Dashboard({ name, children }: PropsDashboard): ReactElement {
+function Dashboard({ children, name }: PropsDashboard): ReactElement {
   console.log(name);
 
   return (
