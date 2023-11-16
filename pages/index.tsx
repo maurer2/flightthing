@@ -6,6 +6,7 @@ import Head from 'next/head';
 
 import Canvas3D from '../src/components/Canvas3D/Canvas3D';
 import SensorChecker from '../src/components/Dashboard/SensorChecker';
+import Accelerometer from '../src/components/Sensors/Accelerometer/Accelerometer';
 
 // import Image from 'next/image'
 
@@ -27,7 +28,6 @@ const Home: NextPage = (): ReactElement => {
       </Head>
 
       <header className="bg-blue-500 p-4" data-testid="app-header">
-        <h1 className="font-bold mb-4 text-2xl">Debug</h1>
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">
             <SensorChecker id="rotationYAxis" />
@@ -45,7 +45,7 @@ const Home: NextPage = (): ReactElement => {
         <Canvas3D />
       </main>
 
-      {/* <Gyroscope /> */}
+      <Accelerometer />
 
       <footer className="bg-blue-500">Footer</footer>
     </div>

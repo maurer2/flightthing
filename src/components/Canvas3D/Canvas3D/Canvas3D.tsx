@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 
 import { Canvas } from '@react-three/fiber';
 import React from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import type { RootState } from '../../../store';
 import type { Sensor } from '../../../store/types';
@@ -11,17 +11,14 @@ import CoordinateSystem from '../CoordinateSystem';
 import Object3D from '../Object3D';
 
 function Canvas3D(): ReactElement {
-  const sensorRotationYAxis = useSelector<RootState, Sensor>(
-    (state) => state.sensors.rotationYAxis,
-    shallowEqual,
-  );
   const sensorRotationXAxis = useSelector<RootState, Sensor>(
     (state) => state.sensors.rotationXAxis,
-    shallowEqual,
+  );
+  const sensorRotationYAxis = useSelector<RootState, Sensor>(
+    (state) => state.sensors.rotationYAxis,
   );
   const sensorRotationZAxis = useSelector<RootState, Sensor>(
     (state) => state.sensors.rotationZAxis,
-    shallowEqual,
   );
 
   return (

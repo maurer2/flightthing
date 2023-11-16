@@ -8,7 +8,8 @@
     "dev2": "next dev --turbo",
     "lint": "next lint",
     "start": "next start",
-    "test": "vitest"
+    "test": "vitest",
+    "test:types": "tsc --noEmit"
   },
   "dependencies": {
     "@react-three/cannon": "^6.6.0",

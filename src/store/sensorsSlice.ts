@@ -1,5 +1,6 @@
 // import SensorValue from '../types/SensorValue';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Vector3 } from 'three';
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -43,9 +44,25 @@ const sensorsSlice = createSlice({
       state[id].value = value;
       state[id].isBusy = false;
     },
+    updateSensors(state, action: PayloadAction<{ value: Vector3 }>) {
+      const { value } = action.payload;
+
+      sensorsSlice.caseReducers.updateSensor(state, {
+        payload: { id: 'rotationXAxis', value: value.x },
+        type: 'updateSensor',
+      });
+      sensorsSlice.caseReducers.updateSensor(state, {
+        payload: { id: 'rotationYAxis', value: value.y },
+        type: 'updateSensor',
+      });
+      sensorsSlice.caseReducers.updateSensor(state, {
+        payload: { id: 'rotationZAxis', value: value.z },
+        type: 'updateSensor',
+      });
+    },
   },
 });
 
-export const { querySensor, updateSensor } = sensorsSlice.actions;
+export const { querySensor, updateSensor, updateSensors } = sensorsSlice.actions;
 
 export default sensorsSlice.reducer;
